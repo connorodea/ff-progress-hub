@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FF Autonomous MS-Paint Studio — Live Visual Progress Hub</title>
+  <style>
+    :root {
+      --bg: #080c12;
+      --bg-elev: #0f1621;
+      --bg-card: #131c29;
+      --bg-card-hover: #182435;
+      --border: #213044;
+      --border-hi: #2e4562;
+      --text: #eef4fb;
+      --muted: #8ea3bc;
+      --cyan: #5ac8d8;
+      --amber: #eab25b;
+      --emerald: #34d399;
+      --violet: #a78bfa;
+      --rose: #f472b6;
+      --mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background:
+        radial-gradient(1100px 500px at 12% -8%, rgba(90, 200, 216, 0.13), transparent 60%),
+        radial-gradient(900px 480px at 88% -5%, rgba(234, 178, 91, 0.11), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-bottom: 64px;
+    }
+
+    .shell {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 28px 24px;
+    }
+
+    /* Top Bar */
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      background: rgba(15, 22, 33, 0.86);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #101820, #1b2a3b);
+      border: 1px solid var(--cyan);
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--cyan);
+      box-shadow: 0 0 22px rgba(90, 200, 216, 0.22);
+    }
+
+    .brand h1 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    .brand p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .sync-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 12px;
+      background: rgba(52, 211, 153, 0.11);
+      color: var(--emerald);
+      border: 1px solid rgba(52, 211, 153, 0.32);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .meta-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 11px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+
+    .btn-refresh {
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      background: linear-gradient(180deg, #1b2a3e, #142030);
+      border: 1px solid var(--border-hi);
+      border-radius: 8px;
+      padding: 7px 13px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-refresh:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Hero Progress Card */
+    .hero-card {
+      background: linear-gradient(160deg, rgba(19, 28, 41, 0.95), rgba(12, 18, 28, 0.95));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+    }
+
+    .hero-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .hero-status {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--amber);
+      text-transform: uppercase;
+    }
+
+    .hero-pct {
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--cyan);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: #0a1018;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--emerald) 55%, var(--amber) 100%);
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+
+    /* KPI Strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .kpi-card {
+      background: rgba(11, 17, 26, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 15px 16px;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .kpi-card:hover {
+      border-color: var(--border-hi);
+      transform: translateY(-1px);
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .kpi-value {
+      font-family: var(--mono);
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .kpi-detail {
+      font-size: 12px;
+      color: #9fb3ca;
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 30px 0 14px;
+    }
+
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .section-header span {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Showcase Grid */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+    }
+
+    .showcase-card {
+      grid-column: span 2;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .showcase-card.wide {
+      grid-column: span 3;
+    }
+
+    @media (max-width: 1080px) {
+      .showcase-card, .showcase-card.wide {
+        grid-column: span 3;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .showcase-card, .showcase-card.wide {
+        grid-column: span 6;
+      }
+    }
+
+    .showcase-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+    }
+
+    .img-wrap {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: #070a0f;
+      overflow: hidden;
+      cursor: zoom-in;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      image-rendering: auto;
+      transition: transform 0.25s ease;
+    }
+
+    .showcase-card:hover .img-wrap img {
+      transform: scale(1.025);
+    }
+
+    .img-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(8, 12, 18, 0.88);
+      border: 1px solid var(--border-hi);
+      color: var(--cyan);
+      backdrop-filter: blur(6px);
+    }
+
+    .zoom-hint {
+      position: absolute;
+      bottom: 9px;
+      right: 10px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-family: var(--mono);
+      font-size: 10px;
+      background: rgba(8, 12, 18, 0.82);
+      color: var(--muted);
+    }
+
+    .card-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .card-series {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--amber);
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-cast {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .lineup-cast-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 960px) {
+      .lineup-cast-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cast-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .cast-box-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .cast-box-title {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--amber);
+    }
+
+    .cast-box-window {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--cyan);
+    }
+
+    .cast-box-setting {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .char-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 560px) {
+      .char-mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .char-chip {
+      background: rgba(8, 12, 18, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 11px;
+    }
+
+    .char-chip-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .char-chip-slot {
+      font-size: 10px;
+      color: var(--cyan);
+    }
+
+    .char-chip-role {
+      font-size: 11px;
+      color: #b7c8dc;
+      margin-bottom: 4px;
+    }
+
+    .char-chip-line {
+      font-size: 11px;
+      font-style: italic;
+      color: var(--emerald);
+    }
+
+    .card-metrics {
+      margin-top: auto;
+      padding-top: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #98b4d0;
+      border-top: 1px solid rgba(33, 48, 68, 0.65);
+    }
+
+    /* Telemetry Strip */
+    .telemetry-bar {
+      margin-top: 18px;
+      padding: 15px 18px;
+      border-radius: 14px;
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .telemetry-bar strong {
+      color: var(--emerald);
+    }
+
+    /* Two-column lower layout */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 980px) {
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .panel h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel h3 span {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Queue Table */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .status-chip {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-completed, .status-synced, .status-online {
+      background: rgba(52, 211, 153, 0.14);
+      color: var(--emerald);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+    }
+
+    .status-queued {
+      background: rgba(234, 178, 91, 0.14);
+      color: var(--amber);
+      border: 1px solid rgba(234, 178, 91, 0.35);
+    }
+
+    .status-running {
+      background: rgba(90, 200, 216, 0.16);
+      color: var(--cyan);
+      border: 1px solid rgba(90, 200, 216, 0.38);
+    }
+
+    /* Roadmap List */
+    .milestone-list, .feed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .milestone-item, .feed-item {
+      padding: 12px 14px;
+      border-radius: 11px;
+      background: rgba(10, 15, 23, 0.72);
+      border: 1px solid var(--border);
+    }
+
+    .milestone-top, .feed-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 5px;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .phase-tag {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .milestone-text {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .milestone-link {
+      color: var(--cyan);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .milestone-link:hover {
+      text-decoration: underline;
+    }
+
+    .commit-sha {
+      font-family: var(--mono);
+      color: var(--amber);
+      background: rgba(234, 178, 91, 0.1);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* Dynamic Episode Builds strip */
+    .builds-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .build-mini {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: zoom-in;
+      transition: border-color 0.15s ease;
+    }
+
+    .build-mini:hover {
+      border-color: var(--cyan);
+    }
+
+    .build-mini img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+    }
+
+    .build-mini-meta {
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+
+    .build-mini-meta div {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .build-mini-meta span {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 12, 0.92);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 999;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      max-width: 1240px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .lightbox-inner img {
+      max-width: 100%;
+      max-height: 82vh;
+      border-radius: 12px;
+      border: 1px solid var(--border-hi);
+      object-fit: contain;
+    }
+
+    .lightbox-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .lightbox-close {
+      cursor: pointer;
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border-hi);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-family: var(--mono);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">FF</div>
+        <div>
+          <h1 id="hub-headline">FF Autonomous MS-Paint Studio &amp; Agent Mesh</h1>
+          <p id="hub-subheadline">Live Multi-Series Production Telemetry • Nate &lt;-&gt; Connor Shared Status Hub</p>
+        </div>
+      </div>
+      <div class="sync-controls">
+        <span class="pill"><span class="pulse-dot"></span><span id="live-badge">AUTO-POLL 30s</span></span>
+        <span class="meta-tag" id="last-updated">Syncing telemetry...</span>
+        <button class="btn-refresh" id="refresh-btn" type="button">Refresh Now</button>
+      </div>
+    </header>
+
+    <section class="hero-card">
+      <div class="hero-head">
+        <div class="hero-status" id="hero-status">ALL PIPELINE GATES PASSING • CONTINUOUS AUTO-SYNC ACTIVE</div>
+        <div class="hero-pct" id="hero-pct">100%</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="hero-bar"></div>
+      </div>
+      <div class="kpi-grid" id="kpi-grid"></div>
+    </section>
+
+    <div class="section-header">
+      <h2>Visual Series Showcase &amp; Original Rig Vault</h2>
+      <span>Click any contact sheet or A/B/C strip for full-resolution inspection</span>
+    </div>
+    <section class="showcase-grid" id="showcase-grid"></section>
+
+    <div class="telemetry-bar" id="telemetry-bar"></div>
+
+    <div id="lineup-section-wrap" style="display:none;">
+      <div class="section-header">
+        <h2>16-Character Side-by-Side Comparison (`Character_Lineup_Comparison_40s`)</h2>
+        <span id="lineup-meta">4 Casts × 4 Rigs • 40.0s @ 30fps • 16 Distinct Voices</span>
+      </div>
+      <section class="lineup-cast-grid" id="lineup-cast-grid"></section>
+    </div>
+
+    <div class="section-header">
+      <h2>Autonomous Schedule Queue &amp; Todoist Pipeline Roadmap</h2>
+      <span id="queue-meta">Webhook :8787 • Cron 0 9 * * * • Todoist Synced</span>
+    </div>
+    <section class="split-grid">
+      <div class="panel">
+        <h3>
+          Autonomous Episode Render Queue
+          <span>schedule_queue.json</span>
+        </h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Episode Title</th>
+                <th>Series</th>
+                <th>Status</th>
+                <th>Slot / Target</th>
+              </tr>
+            </thead>
+            <tbody id="queue-tbody"></tbody>
+          </table>
+        </div>
+
+        <h3 style="margin-top: 24px;">
+          gitamesh Peer Coordination (nate &lt;-&gt; connor)
+          <span id="mesh-relay-label">connorodea/gitamesh-hub</span>
+        </h3>
+        <div class="feed-list" id="mesh-events"></div>
+      </div>
+
+      <div class="panel">
+        <h3>
+          Todoist Pipeline Milestones
+          <span>6 / 6 Synced</span>
+        </h3>
+        <div class="milestone-list" id="milestone-list"></div>
+
+        <h3 style="margin-top: 24px;">
+          Latest Multi-Repo Commits
+          <span>Sanitized Git Feed</span>
+        </h3>
+        <div class="feed-list" id="commits-list"></div>
+      </div>
+    </section>
+
+    <div class="section-header">
+      <h2>Synced Build Contact Sheets (`bls_build_assets`)</h2>
+      <span id="builds-count">Auto-copied by ff-sync-progress</span>
+    </div>
+    <section class="builds-grid" id="builds-grid"></section>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <img id="lightbox-img" src="" alt="Full resolution preview" />
+      <div class="lightbox-bar">
+        <span id="lightbox-caption"></span>
+        <button class="lightbox-close" id="lightbox-close" type="button">Close [ESC]</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const POLL_SECONDS = 30;
+    let countdown = POLL_SECONDS;
+
+    function esc(val) {
+      const div = document.createElement("div");
+      div.textContent = val == null ? "" : String(val);
+      return div.innerHTML;
+    }
+
+    function openLightbox(src, caption) {
+      const box = document.getElementById("lightbox");
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox-caption").textContent = caption || src;
+      box.classList.add("open");
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("open");
+      document.getElementById("lightbox-img").src = "";
+    }
+
+    document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+    document.getElementById("lightbox").addEventListener("click", (e) => {
+      if (e.target.id === "lightbox") closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeLightbox();
+    });
+
+    function renderDashboard(data) {
+      if (!data) return;
+      if (data.hero) {
+        document.getElementById("hub-headline").textContent = data.hero.headline || "FF Autonomous MS-Paint Studio";
+        document.getElementById("hub-subheadline").textContent = data.hero.subheadline || "";
+        document.getElementById("hero-status").textContent = data.hero.status_label || "";
+        const pct = Number(data.hero.overall_progress_pct ?? 100);
+        document.getElementById("hero-pct").textContent = `${pct}%`;
+        document.getElementById("hero-bar").style.width = `${Math.max(0, Math.min(100, pct))}%`;
+      }
+
+      document.getElementById("last-updated").textContent = `Generated: ${data.generated_at || "live"}`;
+
+      const kpiGrid = document.getElementById("kpi-grid");
+      kpiGrid.innerHTML = (data.kpis || []).map((k) => `
+        <div class="kpi-card">
+          <div class="kpi-label">${esc(k.label)}</div>
+          <div class="kpi-value">${esc(k.value)}</div>
+          <div class="kpi-detail">${esc(k.detail)}</div>
+        </div>
+      `).join("");
+
+      const showcaseGrid = document.getElementById("showcase-grid");
+      showcaseGrid.innerHTML = (data.showcase_cards || []).map((c, idx) => {
+        const wideClass = idx >= 3 ? "showcase-card wide" : "showcase-card";
+        const caption = `${c.series} — ${c.title}`;
+        return `
+          <article class="${wideClass}">
+            <div class="img-wrap" data-src="${esc(c.image)}" data-caption="${esc(caption)}">
+              <img src="${esc(c.image)}" alt="${esc(caption)}" loading="lazy" />
+              <span class="img-badge" style="color:${esc(c.accent || '#5ac8d8')}">${esc(c.badge)}</span>
+              <span class="zoom-hint">Click to Expand</span>
+            </div>
+            <div class="card-body">
+              <div class="card-series">${esc(c.series)}</div>
+              <div class="card-title">${esc(c.title)}</div>
+              <div class="card-cast">${esc(c.lead_cast)}</div>
+              <div class="card-metrics">${esc(c.metrics)}</div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      showcaseGrid.querySelectorAll(".img-wrap").forEach((el) => {
+        el.addEventListener("click", () => openLightbox(el.dataset.src, el.dataset.caption));
+      });
+
+      const ft = data.forensic_telemetry || {};
+      document.getElementById("telemetry-bar").innerHTML = `
+        <span>1px Pencil Spline Ratio: <strong>${esc(ft.stroke_1px_range || "98.2%–99.6%")}</strong></span>
+        <span>Flat Bucket Fill: <strong>${esc(ft.flat_bucket_range || "79.0%–90.1%")}</strong></span>
+        <span>Background Plate Drift: <strong>${esc(ft.background_drift_px ?? 0)}px</strong></span>
+        <span>Lip-Sync Redraws: <strong>${esc(ft.viseme_count || 6)} Visemes (2s/3s)</strong></span>
+        <span>Broadcast Master: <strong>${esc(ft.target_lufs || -14.0)} LUFS / ${esc(ft.true_peak_dbtp || -1.5)} dBTP</strong></span>
+      `;
+
+      const lineup = data.character_lineup_40s;
+      const lineupWrap = document.getElementById("lineup-section-wrap");
+      if (lineup && Array.isArray(lineup.casts) && lineup.casts.length > 0) {
+        lineupWrap.style.display = "block";
+        const charsByCast = {};
+        (lineup.characters || []).forEach((ch) => {
+          const k = ch.cast_index || 0;
+          if (!charsByCast[k]) charsByCast[k] = [];
+          charsByCast[k].push(ch);
+        });
+        document.getElementById("lineup-meta").textContent =
+          `${lineup.character_count || 16} Original Rigs • ${lineup.duration_sec || 40}s (${lineup.total_frames || 1200}f @ ${lineup.fps || 30}fps) • CLI: ${lineup.cli_command || "ff lineup-compare --open"}`;
+        document.getElementById("lineup-cast-grid").innerHTML = lineup.casts.map((cast) => {
+          const castChars = charsByCast[cast.cast_index] || [];
+          return `
+            <div class="cast-box">
+              <div class="cast-box-head">
+                <span class="cast-box-title">${esc(cast.header)}</span>
+                <span class="cast-box-window">${esc(cast.window_label)}</span>
+              </div>
+              <div class="cast-box-setting">${esc(cast.setting)}</div>
+              <div class="char-mini-grid">
+                ${castChars.map((ch) => `
+                  <div class="char-chip">
+                    <div class="char-chip-top">
+                      <span>#${String(ch.global_index).padStart(2, "0")} ${esc(ch.name)}</span>
+                      <span class="char-chip-slot">${Number(ch.global_start_sec).toFixed(1)}s–${Number(ch.global_end_sec).toFixed(1)}s</span>
+                    </div>
+                    <div class="char-chip-role">${esc(ch.archetype)} • ${esc(ch.voice_style)}</div>
+                    <div class="char-chip-line">"${esc(ch.line)}"</div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          `;
+        }).join("");
+      } else {
+        lineupWrap.style.display = "none";
+      }
+
+      const qBody = document.getElementById("queue-tbody");
+      qBody.innerHTML = (data.schedule_queue || []).map((item) => {
+        const st = (item.status || "queued").toLowerCase();
+        const stClass = st === "completed" ? "status-completed" : (st === "running" ? "status-running" : "status-queued");
+        return `
+          <tr>
+            <td><strong>${esc(item.title)}</strong></td>
+            <td>${esc(item.series_title)}</td>
+            <td><span class="status-chip ${stClass}">${esc(item.status)}</span></td>
+            <td style="font-family:var(--mono);font-size:11px;color:var(--muted)">
+              ${esc(item.completed_at ? item.delivery_target : item.scheduled_for)}
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      const mesh = data.gitamesh || {};
+      document.getElementById("mesh-relay-label").textContent = mesh.relay_repo || "connorodea/gitamesh-hub";
+      const peerStrip = (mesh.peers || []).map((p) => `
+        <div class="feed-item">
+          <div class="feed-top">
+            <span class="phase-tag">PEER: ${esc(p.node)}</span>
+            <span class="status-chip status-online">${esc(p.status)} • :${esc(p.port)}</span>
+          </div>
+          <div class="milestone-text" style="font-size:12px;color:var(--muted)">
+            ${esc(p.transport)} • Heartbeat: ${esc(p.updated_at)}
+          </div>
+        </div>
+      `).join("");
+      const eventStrip = (mesh.recent_events || []).map((ev) => `
+        <div class="feed-item">
+          <div class="feed-top">
+            <span class="phase-tag">${esc(ev.from_node)} &rarr; ${esc(ev.to_node)}</span>
+            <span style="color:var(--muted)">${esc(ev.created_at)}</span>
+          </div>
+          <div class="milestone-text">${esc(ev.summary)}</div>
+        </div>
+      `).join("");
+      document.getElementById("mesh-events").innerHTML = peerStrip + eventStrip;
+
+      const mList = document.getElementById("milestone-list");
+      mList.innerHTML = (data.todoist_milestones || []).map((m) => `
+        <div class="milestone-item">
+          <div class="milestone-top">
+            <span class="phase-tag">${esc(m.phase)} • ${esc(m.priority)}</span>
+            <div>
+              ${m.url ? `<a class="milestone-link" href="${esc(m.url)}" target="_blank" rel="noopener">Todoist &nearr;</a>` : ""}
+              <span class="status-chip status-synced">${esc(m.status)}</span>
+            </div>
+          </div>
+          <div class="milestone-text">${esc(m.task)}</div>
+        </div>
+      `).join("");
+
+      const cList = document.getElementById("commits-list");
+      cList.innerHTML = (data.recent_commits || []).map((c) => `
+        <div class="feed-item">
+          <div class="feed-top">
+            <span class="phase-tag">${esc(c.repo)} <span class="commit-sha">${esc(c.sha)}</span></span>
+            <span style="color:var(--muted)">${esc(c.timestamp)}</span>
+          </div>
+          <div class="milestone-text">${esc(c.subject)}</div>
+        </div>
+      `).join("");
+
+      const bGrid = document.getElementById("builds-grid");
+      const builds = data.episode_builds || [];
+      document.getElementById("builds-count").textContent = `${builds.length} episode contact sheets synced`;
+      bGrid.innerHTML = builds.map((b) => `
+        <div class="build-mini" data-src="${esc(b.asset_path)}" data-caption="${esc(b.title)}">
+          <img src="${esc(b.asset_path)}" alt="${esc(b.title)}" loading="lazy" />
+          <div class="build-mini-meta">
+            <div>${esc(b.title)}</div>
+            <span>${esc(b.scenes_count)} scenes • ${esc(b.size_kb)} KB • ${esc(b.updated_at)}</span>
+          </div>
+        </div>
+      `).join("");
+      bGrid.querySelectorAll(".build-mini").forEach((el) => {
+        el.addEventListener("click", () => openLightbox(el.dataset.src, el.dataset.caption));
+      });
+    }
+
+    async function fetchProgress() {
+      try {
+        const res = await fetch(`./progress_data.json?t=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        renderDashboard(data);
+        countdown = POLL_SECONDS;
+      } catch (err) {
+        document.getElementById("last-updated").textContent = `Sync retry queued (${err.message})`;
+      }
+    }
+
+    document.getElementById("refresh-btn").addEventListener("click", fetchProgress);
+
+    setInterval(() => {
+      countdown -= 1;
+      if (countdown <= 0) {
+        fetchProgress();
+      } else {
+        document.getElementById("live-badge").textContent = `AUTO-POLL ${countdown}s`;
+      }
+    }, 1000);
+
+    fetchProgress();
+  </script>
+</body>
+</html>

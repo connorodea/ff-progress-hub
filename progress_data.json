@@ -1,0 +1,676 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-11-11T09:02:54Z",
+  "live_url": "https://connorodea.github.io/ff-progress-hub/",
+  "poll_interval_seconds": 30,
+  "hero": {
+    "headline": "FF Autonomous MS-Paint Studio & Agent Mesh",
+    "subheadline": "Live Multi-Series Production Telemetry \u2022 Nate <-> Connor Shared Status Hub",
+    "overall_progress_pct": 100,
+    "phases_completed": 6,
+    "phases_total": 6,
+    "status_label": "ALL PIPELINE GATES PASSING \u2022 CONTINUOUS AUTO-SYNC ACTIVE"
+  },
+  "kpis": [
+    {
+      "id": "active_series",
+      "label": "Active Original Series",
+      "value": "3",
+      "detail": "Nullarbor Roadhouse \u2022 Shed Mechanics \u2022 Council Wars",
+      "state": "pass"
+    },
+    {
+      "id": "rendered_pilots",
+      "label": "Rendered Pilots",
+      "value": "3 / 3",
+      "detail": "1080p Masters + 9:16 Shorts on G-DRIVE",
+      "state": "pass"
+    },
+    {
+      "id": "character_lineup_16",
+      "label": "16-Character Lineup (40s)",
+      "value": "16 / 16",
+      "detail": "4 Casts \u00d7 10s \u2022 1200f 3x NN \u2022 -14.0 LUFS",
+      "state": "pass"
+    },
+    {
+      "id": "forensic_physics",
+      "label": "Forensic MS Paint Physics",
+      "value": "98.2%\u201399.6%",
+      "detail": "1px Pencil Strokes \u2022 0px BG Drift",
+      "state": "pass"
+    },
+    {
+      "id": "todoist_milestones",
+      "label": "Todoist Milestones",
+      "value": "6 / 6",
+      "detail": "Project Synced \u2022 FF MS-Paint Animation Pipeline",
+      "state": "pass"
+    },
+    {
+      "id": "resend_audit",
+      "label": "Daily 9:00 AM Resend Audit",
+      "value": "LIVE",
+      "detail": "Cron 0 9 * * * \u2022 Receipt 01a1c978-41b0-767a",
+      "state": "pass"
+    },
+    {
+      "id": "gitamesh_mesh",
+      "label": "gitamesh Peer Mesh",
+      "value": "nate <-> connor",
+      "detail": "ONLINE \u2022 P2P :8790 + GitHub WAN Relay",
+      "state": "pass"
+    }
+  ],
+  "forensic_telemetry": {
+    "stroke_1px_range": "98.2%\u201399.6%",
+    "clarence_cu_1px_pct": 98.2,
+    "donny_cu_1px_pct": 99.3,
+    "side_two_shot_1px_pct": 99.6,
+    "flat_bucket_range": "79.0%\u201390.1%",
+    "background_drift_px": 0,
+    "viseme_count": 6,
+    "target_lufs": -14.0,
+    "true_peak_dbtp": -1.5
+  },
+  "last_audit_timestamp": "2026-11-11T00:17:43",
+  "character_lineup_40s": {
+    "slug": "character_lineup_comparison_40s",
+    "title": "16-Character MS Paint Side-by-Side Lineup Comparison (40.0s)",
+    "duration_sec": 40.0,
+    "fps": 30,
+    "total_frames": 1200,
+    "resolution": "1920x1080",
+    "native_canvas": "640x360",
+    "upscale_factor": 3,
+    "integrated_lufs": -14.0,
+    "true_peak_dbtp": -1.8,
+    "cast_count": 4,
+    "character_count": 16,
+    "cli_command": "ff lineup-compare --open",
+    "release_bundle": "G-DRIVE://Releases/Character_Lineup_Comparison_40s/Character_Lineup_Comparison_40s.mp4",
+    "contact_sheet_asset": "assets/cast_comparison_40s_contact_sheet.jpg",
+    "portraits_sheet_asset": "assets/cast_lineup_16_portraits.jpg",
+    "casts": [
+      {
+        "cast_index": 1,
+        "seg_id": "seg1",
+        "header": "CAST 1 - OUTBACK CRYPTIDS",
+        "window_label": "00:00-00:10",
+        "start_sec": 0.0,
+        "end_sec": 10.0,
+        "setting": "Dusty Red-Earth Billabong Clearing at dusk (ochre dirt, eucalyptus silhouettes, tin esky)",
+        "character_names": [
+          "MACKA",
+          "SKINK",
+          "WOMBO",
+          "BINNY"
+        ],
+        "pixel_metrics": {
+          "native_resolution": "640x360",
+          "output_resolution": "1920x1080",
+          "flat_bucket_pct": 77.59,
+          "black_line_pct": 6.2,
+          "stroke_1px_pct": 94.8,
+          "nn_3x3_max_block_diff": 0,
+          "background_drift_pixels": 0,
+          "viseme_swap_diff_pct": 0.1076
+        }
+      },
+      {
+        "cast_index": 2,
+        "seg_id": "seg2",
+        "header": "CAST 2 - ROADHOUSE CREW",
+        "window_label": "00:10-00:20",
+        "start_sec": 10.0,
+        "end_sec": 20.0,
+        "setting": "Sun-Baked Highway Servo Diner Counter & Pie Warmer",
+        "character_names": [
+          "STEVO",
+          "SHAZZA",
+          "GRUB",
+          "FERGO"
+        ],
+        "pixel_metrics": {
+          "black_line_pct": 8.01,
+          "stroke_1px_pct": 98.83,
+          "flat_bucket_pct": 72.57,
+          "nn_3x3_max_block_diff": 0.0,
+          "bg_drift_max_diff": 0,
+          "diagnostic_png_frame": 234
+        }
+      },
+      {
+        "cast_index": 3,
+        "seg_id": "seg3",
+        "header": "CAST 3 - SHED INVENTORS",
+        "window_label": "00:20-00:30",
+        "start_sec": 20.0,
+        "end_sec": 30.0,
+        "setting": "Corrugated-Tin Backyard Shed with pegboard tools & glowing lawnmower core",
+        "character_names": [
+          "BRUCEY",
+          "ZAPPA",
+          "CHOOK",
+          "TAZZA"
+        ],
+        "pixel_metrics": {
+          "bg_flat_bucket_pct": 86.79,
+          "flat_bucket_pct": 74.51,
+          "black_line_pct": 8.36,
+          "stroke_1px_pencil_pct": 99.45,
+          "background_drift_pixels": 0,
+          "viseme_mouth_diff_pixels": 1183,
+          "nearest_neighbor_3x3_max_diff": 0
+        }
+      },
+      {
+        "cast_index": 4,
+        "seg_id": "seg4",
+        "header": "CAST 4 - SHIRE RIVALS",
+        "window_label": "00:30-00:40",
+        "start_sec": 30.0,
+        "end_sec": 40.0,
+        "setting": "Suburban Cul-De-Sac Fibro Fence, Wheelie Bin & Gumtree",
+        "character_names": [
+          "NEVILLE",
+          "DOUGIE",
+          "KAZZA",
+          "SWOOP"
+        ],
+        "pixel_metrics": {
+          "black_line_pct": 10.19,
+          "stroke_1px_pct": 92.85,
+          "flat_bucket_pct": 77.57,
+          "sky_header_drift_pixels": 0,
+          "mouth_viseme_diff_pct": 0.3563,
+          "upscale_3x3_nn_max_diff": 0
+        }
+      }
+    ],
+    "characters": [
+      {
+        "global_index": 1,
+        "cast_index": 1,
+        "cast_header": "CAST 1 - OUTBACK CRYPTIDS",
+        "slot_index": 0,
+        "name": "MACKA",
+        "x_center": 86,
+        "archetype": "Shaggy slate-grey Bush Yowie in cork-string slouch hat & maroon singlet",
+        "voice_style": "Deep gravelly baritone",
+        "line": "Yeah nah, waterhole's humming again.",
+        "global_start_sec": 0.0,
+        "global_end_sec": 2.5
+      },
+      {
+        "global_index": 2,
+        "cast_index": 1,
+        "cast_header": "CAST 1 - OUTBACK CRYPTIDS",
+        "slot_index": 1,
+        "name": "SKINK",
+        "x_center": 232,
+        "archetype": "Turquoise-and-sand thorny devil lizard mutant with brow spikes, uneven yellow eyes & ripped orange hi-vis vest",
+        "voice_style": "Raspy quick voice",
+        "line": "Told ya not to chuck batteries in it.",
+        "global_start_sec": 2.5,
+        "global_end_sec": 5.0
+      },
+      {
+        "global_index": 3,
+        "cast_index": 1,
+        "cast_header": "CAST 1 - OUTBACK CRYPTIDS",
+        "slot_index": 2,
+        "name": "WOMBO",
+        "x_center": 392,
+        "archetype": "Stocky barrel-chested brown wombat bloke in navy shearer singlet with nose Band-Aid & blue tin mug",
+        "voice_style": "Slow drawl",
+        "line": "Tastes alright if ya boil it twice.",
+        "global_start_sec": 5.0,
+        "global_end_sec": 7.5
+      },
+      {
+        "global_index": 4,
+        "cast_index": 1,
+        "cast_header": "CAST 1 - OUTBACK CRYPTIDS",
+        "slot_index": 3,
+        "name": "BINNY",
+        "x_center": 544,
+        "archetype": "Lanky white-and-black bin-chicken ibis mutant with curved dark beak, backwards green servo cap & trackie jacket",
+        "voice_style": "Dry croak",
+        "line": "Dibsed that floating pie wrapper.",
+        "global_start_sec": 7.5,
+        "global_end_sec": 10.0
+      },
+      {
+        "global_index": 5,
+        "cast_index": 2,
+        "cast_header": "CAST 2 - ROADHOUSE CREW",
+        "slot_index": 0,
+        "name": "STEVO",
+        "x_center": 86,
+        "archetype": "Sunburnt long-haul truckie with thick horseshoe mo, mullet, speed-dealer sunnies on forehead & blue singlet",
+        "voice_style": "en-au+m3",
+        "line": "Blew two tyres dodging a glowing roo.",
+        "global_start_sec": 10.0,
+        "global_end_sec": 12.5
+      },
+      {
+        "global_index": 6,
+        "cast_index": 2,
+        "cast_header": "CAST 2 - ROADHOUSE CREW",
+        "slot_index": 1,
+        "name": "SHAZZA",
+        "x_center": 232,
+        "archetype": "No-nonsense roadhouse fry-cook with tall bleached bun, crooked horn-rim glasses, teal apron & steel tongs",
+        "voice_style": "en-au+f3",
+        "line": "Sauce is sixty cents extra love.",
+        "global_start_sec": 12.5,
+        "global_end_sec": 15.0
+      },
+      {
+        "global_index": 7,
+        "cast_index": 2,
+        "cast_header": "CAST 2 - ROADHOUSE CREW",
+        "slot_index": 2,
+        "name": "GRUB",
+        "x_center": 392,
+        "archetype": "Rotund warty olive-brown cane-toad mechanic in grease-stained red overalls & wrench",
+        "voice_style": "en-au+croak",
+        "line": "Alternator's fulla green ants mate.",
+        "global_start_sec": 15.0,
+        "global_end_sec": 17.5
+      },
+      {
+        "global_index": 8,
+        "cast_index": 2,
+        "cast_header": "CAST 2 - ROADHOUSE CREW",
+        "slot_index": 3,
+        "name": "FERGO",
+        "x_center": 544,
+        "archetype": "Lanky sun-bleached surfie drifter with dreads, white zinc nose stripe, huge cosmic pupils & purple tie-dye tee",
+        "voice_style": "en-au+m7",
+        "line": "The pie warmer just winked at me.",
+        "global_start_sec": 17.5,
+        "global_end_sec": 20.0
+      },
+      {
+        "global_index": 9,
+        "cast_index": 3,
+        "cast_header": "CAST 3 - SHED INVENTORS",
+        "slot_index": 0,
+        "name": "BRUCEY",
+        "x_center": 86,
+        "archetype": "Grizzled bush welder with bushy beard, brass welding goggles on forehead & leather apron over red flannel",
+        "voice_style": "Gritty rumble",
+        "line": "Bolted a microwave to the Victa.",
+        "global_start_sec": 20.0,
+        "global_end_sec": 22.5
+      },
+      {
+        "global_index": 10,
+        "cast_index": 3,
+        "cast_header": "CAST 3 - SHED INVENTORS",
+        "slot_index": 1,
+        "name": "ZAPPA",
+        "x_center": 232,
+        "archetype": "Frazzled white cockatoo-mutant inventor with spiky yellow sulphur crest, cracked spectacles & lab coat",
+        "voice_style": "Twitchy nasal voice",
+        "line": "Technically it cuts grass yesterday.",
+        "global_start_sec": 22.5,
+        "global_end_sec": 25.0
+      },
+      {
+        "global_index": 11,
+        "cast_index": 3,
+        "cast_header": "CAST 3 - SHED INVENTORS",
+        "slot_index": 2,
+        "name": "CHOOK",
+        "x_center": 392,
+        "archetype": "Burly square-jawed ex-footy brickie with cauliflower ears, flat-top buzzcut & green-gold hoops jersey",
+        "voice_style": "Flat baritone",
+        "line": "Long as it chills a six-pack.",
+        "global_start_sec": 25.0,
+        "global_end_sec": 27.5
+      },
+      {
+        "global_index": 12,
+        "cast_index": 3,
+        "cast_header": "CAST 3 - SHED INVENTORS",
+        "slot_index": 3,
+        "name": "TAZZA",
+        "x_center": 544,
+        "archetype": "Compact scruffy black Tasmanian devil critter with white chest slash, jagged underbite fang & red beanie",
+        "voice_style": "Gravelly rasp",
+        "line": "Stand back I'm pulling the cord.",
+        "global_start_sec": 27.5,
+        "global_end_sec": 30.0
+      },
+      {
+        "global_index": 13,
+        "cast_index": 4,
+        "cast_header": "CAST 4 - SHIRE RIVALS",
+        "slot_index": 0,
+        "name": "NEVILLE",
+        "x_center": 86,
+        "archetype": "Crusty retired bylaw stickler in khaki safari shirt, sun visor, bushy grey brows & clipboard",
+        "voice_style": "Clipped grumpy voice",
+        "line": "Your nature strip is levitating.",
+        "global_start_sec": 30.0,
+        "global_end_sec": 32.5
+      },
+      {
+        "global_index": 14,
+        "cast_index": 4,
+        "cast_header": "CAST 4 - SHIRE RIVALS",
+        "slot_index": 1,
+        "name": "DOUGIE",
+        "x_center": 232,
+        "archetype": "Relaxed bearded dad in terry-towelling yellow bucket hat, sky-blue polo & stubbie in hand",
+        "voice_style": "Warm slow drawl",
+        "line": "Council only mows up to three feet.",
+        "global_start_sec": 32.5,
+        "global_end_sec": 35.0
+      },
+      {
+        "global_index": 15,
+        "cast_index": 4,
+        "cast_header": "CAST 4 - SHIRE RIVALS",
+        "slot_index": 2,
+        "name": "KAZZA",
+        "x_center": 392,
+        "archetype": "Deadpan bush-mystic neighbour with wild auburn frizz, crystal pendant & patchwork poncho",
+        "voice_style": "Calm serene monotone",
+        "line": "Mercury's parked in your driveway.",
+        "global_start_sec": 35.0,
+        "global_end_sec": 37.5
+      },
+      {
+        "global_index": 16,
+        "cast_index": 4,
+        "cast_header": "CAST 4 - SHIRE RIVALS",
+        "slot_index": 3,
+        "name": "SWOOP",
+        "x_center": 544,
+        "archetype": "Tall bipedal black-and-white magpie ranger in tiny fluorescent council hi-vis vest & amber stare",
+        "voice_style": "Metallic Aussie drawl",
+        "line": "Permits expired last Tuesday mate.",
+        "global_start_sec": 37.5,
+        "global_end_sec": 40.0
+      }
+    ]
+  },
+  "showcase_cards": [
+    {
+      "id": "pilot_nullarbor",
+      "badge": "PILOT 01 \u2022 G-DRIVE MASTER",
+      "series": "The Nullarbor Roadhouse",
+      "title": "The Haunted Chiko Roll",
+      "lead_cast": "Barnaby the Red Bunyip & Kipper the Frill-Neck",
+      "metrics": "1080p30 Nearest-Neighbor \u2022 98.2%\u201399.6% 1px \u2022 -14.0 LUFS",
+      "image": "assets/haunted_chiko_roll_contact_sheet.jpg",
+      "accent": "#EAB25B"
+    },
+    {
+      "id": "pilot_bush_mechanics",
+      "badge": "PILOT 02 \u2022 G-DRIVE MASTER",
+      "series": "Outback Shed Mechanics",
+      "title": "The Two-Stroke Time Machine",
+      "lead_cast": "Rusty the Shed Mechanic & Apprentice Kev",
+      "metrics": "1080p30 Nearest-Neighbor \u2022 5 Camera Setups \u2022 0px Drift",
+      "image": "assets/bush_mechanics_contact_sheet.jpg",
+      "accent": "#5AC8D8"
+    },
+    {
+      "id": "pilot_council_wars",
+      "badge": "PILOT 03 \u2022 G-DRIVE MASTER",
+      "series": "Shire Council Wars",
+      "title": "The Wheelie Bin Tax",
+      "lead_cast": "Damo the Shire Ranger & Pensioner Trev",
+      "metrics": "1080p30 Nearest-Neighbor \u2022 6-Viseme Lip-Sync \u2022 Companion 9:16 Short",
+      "image": "assets/council_wars_contact_sheet.jpg",
+      "accent": "#6EE7B7"
+    },
+    {
+      "id": "character_lineup_comparison_40s",
+      "badge": "40.0s MASTER \u2022 4 CASTS \u00d7 4 RIGS",
+      "series": "Character_Lineup_Comparison_40s",
+      "title": "16-Character Side-by-Side MS Paint Lineup (2x2 Cast Grid)",
+      "lead_cast": "Cast 1 Cryptids \u2022 Cast 2 Roadhouse \u2022 Cast 3 Shed Inventors \u2022 Cast 4 Shire Rivals",
+      "metrics": "1920x1080p30 (3x NN) \u2022 1200 Frames \u2022 -14.0 LUFS / -1.8 dBTP",
+      "image": "assets/cast_comparison_40s_contact_sheet.jpg",
+      "accent": "#F472B6"
+    },
+    {
+      "id": "character_lineup_16_portraits",
+      "badge": "16 ORIGINAL RIGS \u2022 3x NN PORTRAITS",
+      "series": "Character_Lineup_Comparison_40s",
+      "title": "16-Character Close-Up Portrait Vault (1px Hand-Lettered)",
+      "lead_cast": "Macka \u2022 Skink \u2022 Wombo \u2022 Binny \u2022 Stevo \u2022 Shazza \u2022 Grub \u2022 Fergo \u2022 Brucey \u2022 Zappa \u2022 Chook \u2022 Tazza \u2022 Neville \u2022 Dougie \u2022 Kazza \u2022 Swoop",
+      "metrics": "Zero Computer Fonts \u2022 16 Distinct Aussie Voices \u2022 0px BG Drift",
+      "image": "assets/cast_lineup_16_portraits.jpg",
+      "accent": "#A78BFA"
+    },
+    {
+      "id": "cast_roster_v9",
+      "badge": "ORIGINAL RIG ROSTER \u2022 v9",
+      "series": "100% Original Character Vault",
+      "title": "Multi-Series Modular MS Paint Cast Sheet",
+      "lead_cast": "Barnaby \u2022 Kipper \u2022 Rusty \u2022 Kev \u2022 Damo",
+      "metrics": "Zero Copyright Cloning \u2022 Whole-Expression 6-Viseme Redraws",
+      "image": "assets/original_cast_v9_contact_sheet.jpg",
+      "accent": "#F472B6"
+    },
+    {
+      "id": "abc_thumbs",
+      "badge": "PACKAGING \u2022 A/B/C TEST STRIP",
+      "series": "Hand-Lettered 1px Spline Packaging",
+      "title": "The Haunted Chiko Roll \u2014 A/B/C Thumbnail Variants",
+      "lead_cast": "Pure 1px Spline Brush Lettering (cv2.putText Forbidden)",
+      "metrics": "3 High-Contrast Variants \u2022 Information-Gap Framing",
+      "image": "assets/haunted_chiko_roll_abc_thumbs.jpg",
+      "accent": "#A78BFA"
+    }
+  ],
+  "episode_builds": [
+    {
+      "slug": "episode_1_the_servo_pie_incident",
+      "title": "Brown Town Tales \u2014 Episode 1 - The Servo Pie Incident",
+      "asset_path": "assets/episode_1_the_servo_pie_incident_contact_sheet.jpg",
+      "scenes_count": 4,
+      "updated_at": "2026-11-11T04:13:43Z",
+      "size_kb": 806.9
+    },
+    {
+      "slug": "the_haunted_chiko_roll",
+      "title": "The Nullarbor Roadhouse \u2014 The Haunted Chiko Roll",
+      "asset_path": "assets/the_haunted_chiko_roll_contact_sheet.jpg",
+      "scenes_count": 4,
+      "updated_at": "2026-11-11T06:34:46Z",
+      "size_kb": 373.0
+    },
+    {
+      "slug": "the_servo_pie_incident",
+      "title": "Brown Town Tales \u2014 The Servo Pie Incident",
+      "asset_path": "assets/the_servo_pie_incident_contact_sheet.jpg",
+      "scenes_count": 4,
+      "updated_at": "2026-11-11T05:42:50Z",
+      "size_kb": 337.7
+    },
+    {
+      "slug": "the_two_stroke_time_machine",
+      "title": "Outback Shed Mechanics \u2014 The Two-Stroke Time Machine",
+      "asset_path": "assets/the_two_stroke_time_machine_contact_sheet.jpg",
+      "scenes_count": 4,
+      "updated_at": "2026-11-11T06:41:20Z",
+      "size_kb": 343.0
+    },
+    {
+      "slug": "the_wheelie_bin_tax",
+      "title": "Shire Council Wars \u2014 The Wheelie Bin Tax",
+      "asset_path": "assets/the_wheelie_bin_tax_contact_sheet.jpg",
+      "scenes_count": 4,
+      "updated_at": "2026-11-11T06:42:41Z",
+      "size_kb": 355.2
+    }
+  ],
+  "schedule_queue": [
+    {
+      "id": "idea_001_1794377120",
+      "title": "The Haunted Chiko Roll",
+      "series_id": "tucker_box_odyssey",
+      "series_title": "The Nullarbor Roadhouse",
+      "status": "completed",
+      "scheduled_for": "next_slot",
+      "completed_at": "2026-11-10T23:34:49",
+      "delivery_target": "G-DRIVE://Releases/The Nullarbor Roadhouse  The Haunted Chiko Roll"
+    },
+    {
+      "id": "idea_002_1794379304",
+      "title": "The Servo Slushie Incident",
+      "series_id": "tucker_box_odyssey",
+      "series_title": "The Nullarbor Roadhouse",
+      "status": "queued",
+      "scheduled_for": "2026-11-12T09:00:00",
+      "completed_at": "",
+      "delivery_target": "G-DRIVE://Releases (Pending Slot)"
+    }
+  ],
+  "todoist_milestones": [
+    {
+      "phase": "Phase 1",
+      "task": "[FF-Pipeline] Lock Structured JSON Blueprint (pipeline_blueprint.json) with 1px MS Paint spline physics, 6-viseme lip-sync, and 0-copyright-replica guardrails",
+      "priority": "P1",
+      "status": "synced",
+      "url": "https://app.todoist.com/app/task/6hxfXqWp5GCPHXJr"
+    },
+    {
+      "phase": "Phase 2",
+      "task": "[FF-Pipeline] Build Original Multi-Series Character Rigs (Barnaby the Red Bunyip, Kipper the Frill-Neck Lizard, Rusty the Shed Mechanic, Damo the Shire Ranger)",
+      "priority": "P1",
+      "status": "synced",
+      "url": "https://app.todoist.com/app/task/6hxfXqhPhqCqhmGr"
+    },
+    {
+      "phase": "Phase 3",
+      "task": "[FF-Pipeline] Install inline `ff` shebang CLI (/opt/homebrew/bin/ff) for one-line terminal execution (produce, queue, webhook, audit-email, todoist-sync)",
+      "priority": "P2",
+      "status": "synced",
+      "url": "https://app.todoist.com/app/task/6hxfXqmWGFrqg4qJ"
+    },
+    {
+      "phase": "Phase 4",
+      "task": "[FF-Pipeline] Configure Webhook & Idea Queue Server (ff webhook --port 8787) to accept new series/episode prompts and trigger autonomous scheduled renders",
+      "priority": "P2",
+      "status": "synced",
+      "url": "https://app.todoist.com/app/task/6hxfXqmCxj8XQgVJ"
+    },
+    {
+      "phase": "Phase 5",
+      "task": "[FF-Pipeline] Schedule Daily 9:00 AM Resend CLI Progress Audit to <verified-recipient> (0 9 * * *)",
+      "priority": "P2",
+      "status": "synced",
+      "url": "https://app.todoist.com/app/task/6hxfXqvGQGx32RGJ"
+    },
+    {
+      "phase": "Phase 6",
+      "task": "[FF-Pipeline] Sync Pipeline Roadmap to Todoist account via todoist CLI once authenticated",
+      "priority": "P3",
+      "status": "synced",
+      "url": "https://app.todoist.com/app/task/6hxfXqx7xW7c4mWr"
+    }
+  ],
+  "gitamesh": {
+    "mesh_pair": "nate <-> connor",
+    "status": "ONLINE",
+    "relay_repo": "connorodea/gitamesh-hub",
+    "peers": [
+      {
+        "node": "nate",
+        "status": "online",
+        "port": 8790,
+        "transport": "P2P HTTP/WS + GitHub WAN Relay",
+        "updated_at": "2026-11-11T07:52:35Z"
+      },
+      {
+        "node": "connor",
+        "status": "online",
+        "port": 8790,
+        "transport": "P2P HTTP/WS + GitHub WAN Relay",
+        "updated_at": "2026-11-11T07:48:07Z"
+      }
+    ],
+    "recent_events": [
+      {
+        "id": "gmsg_cf6f61495ada4355",
+        "created_at": "2026-11-11T07:52:30Z",
+        "from_node": "nate",
+        "to_node": "connor",
+        "summary": "QA check from Nate's Mac: gitamesh P2P daemon (0.0.0.0:8790) + GitHub WAN relay verified ready."
+      },
+      {
+        "id": "gmsg_b774aa6c108b4220",
+        "created_at": "2026-11-11T07:48:06Z",
+        "from_node": "connor",
+        "to_node": "nate",
+        "summary": "WAN Relay E2E test reply: GitHub push/pull roundtrip verified for connor <-> nate."
+      },
+      {
+        "id": "gmsg_e890dab202194606",
+        "created_at": "2026-11-11T07:48:01Z",
+        "from_node": "nate",
+        "to_node": "connor",
+        "summary": "Handshake from Nate (<peer-host>:8790): Gitamesh P2P daemon + GitHub WAN relay live! Run bootstrap.sh on your machine and reply with `gitamesh send --to nate ...`"
+      }
+    ]
+  },
+  "recent_commits": [
+    {
+      "repo": "piq-studio-suite",
+      "sha": "d00e7af",
+      "timestamp": "2026-11-11T01:07:44-07:00",
+      "subject": "feat(studio): shared dual-channel engine v2.2.0, bls_engine (ff), gitamesh CLI & lint/test gates"
+    },
+    {
+      "repo": "gitamesh-hub",
+      "sha": "a95de26",
+      "timestamp": "2026-11-11T00:52:35-07:00",
+      "subject": "mesh(heartbeat): nate"
+    },
+    {
+      "repo": "gitamesh-hub",
+      "sha": "d132f57",
+      "timestamp": "2026-11-11T00:52:31-07:00",
+      "subject": "mesh(nate->connor): gmsg_cf6f61495ada4355"
+    },
+    {
+      "repo": "gitamesh-hub",
+      "sha": "bffb2d7",
+      "timestamp": "2026-11-11T00:48:14-07:00",
+      "subject": "mesh(ack): nate"
+    },
+    {
+      "repo": "gitamesh-hub",
+      "sha": "859aa74",
+      "timestamp": "2026-11-11T00:48:07-07:00",
+      "subject": "mesh(connor->nate): gmsg_b774aa6c108b4220"
+    },
+    {
+      "repo": "piq-studio-suite",
+      "sha": "490ca51",
+      "timestamp": "2026-11-10T23:11:12-07:00",
+      "subject": "feat(studio_core): shared dual-channel engine v2.1.0 (PIQ + 6ixInsider)"
+    },
+    {
+      "repo": "piq-studio-suite",
+      "sha": "2aa7c7f",
+      "timestamp": "2026-11-10T22:58:29-07:00",
+      "subject": "feat(studio_core): shared dual-channel engine v2.1.0 (PIQ + 6ixInsider)"
+    },
+    {
+      "repo": "piq-studio-suite",
+      "sha": "2a84590",
+      "timestamp": "2026-11-10T22:13:10-07:00",
+      "subject": "feat(studio_core): enforce 70% real-video gate, h264_videotoolbox, Resolve live alias, curated stems & cache pruning"
+    }
+  ]
+}
